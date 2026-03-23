@@ -358,33 +358,34 @@ clearInterval(timerInterval)
 document.getElementById("quiz").classList.add("hidden")
 document.getElementById("end").classList.remove("hidden")
 
-let time=document.getElementById("timerSmall").innerText
+let time = document.getElementById("timerSmall").innerText
 
-// חישוב זמן בטוח
+// חישוב זמן
 let parts = time.split(":");
 let minutes = parseInt(parts[0]) || 0;
 let seconds = parseInt(parts[1]) || 0;
 let totalSeconds = minutes * 60 + seconds;
 
-//  סינון
+// סינון - פחות מ-15 שניות לא שולח
 if (totalSeconds < 15) {
   console.log("לא נשלח - מהיר מדי");
-  return;
+} else {
 
-// שליחה (חייב להיות מחוץ ל-if)
-let nameInput = document.getElementById("username");
-let name = nameInput ? nameInput.value : "לא צוין";
+  // שליחה
+  let nameInput = document.getElementById("username");
+  let name = nameInput ? nameInput.value : "לא צוין";
 
-document.getElementById("scoreInput").value = score;
-document.getElementById("timeInput").value = time;
-document.getElementById("nameInput").value = name;
+  document.getElementById("scoreInput").value = score;
+  document.getElementById("timeInput").value = time;
+  document.getElementById("nameInput").value = name;
 
-document.getElementById("formSubmit").submit();
+  document.getElementById("formSubmit").submit();
+}
 
-document.getElementById("score").innerText=`🏆 ${score}/100`
-document.getElementById("detail").innerText=
+// הצגת תוצאות (חייב להיות מחוץ ל-if)
+document.getElementById("score").innerText = `🏆 ${score}/100`
+document.getElementById("detail").innerText =
 `✔ נכונות: ${score/5} | ❌ לא נכונות: ${wrong} | ⏭ דילג: ${skipped}`
-
 let msg=""
 if(score>=80)msg="🔥 מצטיין!"
 else if(score>=50)msg="👍 יפה!"
