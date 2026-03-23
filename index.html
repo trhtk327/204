@@ -370,14 +370,17 @@ let totalSeconds = minutes * 60 + seconds;
 if (totalSeconds < 15) {
   console.log("לא נשלח - מהיר מדי");
   return;
-  let nameInput = document.getElementById("username");
-  let name = nameInput ? nameInput.value : "לא צוין";
+}
 
-  document.getElementById("scoreInput").value = score;
-  document.getElementById("timeInput").value = time;
-  document.getElementById("nameInput").value = name;
+// שליחה (חייב להיות מחוץ ל-if)
+let nameInput = document.getElementById("username");
+let name = nameInput ? nameInput.value : "לא צוין";
 
-  document.getElementById("formSubmit").submit();
+document.getElementById("scoreInput").value = score;
+document.getElementById("timeInput").value = time;
+document.getElementById("nameInput").value = name;
+
+document.getElementById("formSubmit").submit();
 }
 
 document.getElementById("score").innerText=`🏆 ${score}/100`
