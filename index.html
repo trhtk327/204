@@ -394,6 +394,8 @@ else msg="💪 נסה שוב"
 document.getElementById("msg").innerText=msg
 document.getElementById("time").innerText="⏱ זמן: "+time
 
+}
+
 // היסטוריה
 let history=JSON.parse(localStorage.getItem("quizHistory")||"[]")
 history.push({score,time})
