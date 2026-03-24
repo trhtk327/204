@@ -1,9 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="he">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>חידון הארי פוטר</title>
 
 <style>
@@ -31,6 +32,83 @@ text-align:center;
 box-shadow:0 0 40px rgba(0,0,0,0.9);
 }
 
+#end {
+    text-align: center;
+    padding: 40px 25px;
+    max-width: 420px;
+    margin: 40px auto;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    font-family: Arial, sans-serif;
+}
+
+/* ציון */
+#score {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 20px 0;
+    background: linear-gradient(45deg, #00ffcc, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0,255,200,0.3);
+}
+
+/* הודעה */
+#msg {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* פירוט */
+#detail {
+    font-size: 16px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 10px;
+}
+
+/* זמן */
+#time {
+    font-size: 18px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* כפתורים */
+.small-btn {
+    margin: 10px 5px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.small-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* תיבת שם */
+#username {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin: 15px 0;
+    width: 85%;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+}
+
 .start-btn{
 font-size:32px;
 padding:18px 70px;
@@ -42,13 +120,38 @@ cursor:pointer;
 font-weight:bold;
 }
 
-.small-btn{
-margin:10px;
-padding:8px 18px;
-border:none;
-border-radius:7px;
-background:#00c6ff;
-cursor:pointer;
+/* בסיס לכפתורי סיום */
+.action-btn {
+    margin: 10px 8px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* כפתור שתף */
+.share-btn {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+}
+
+.share-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+/* כפתור שחק שוב */
+.replay-btn {
+    background: linear-gradient(45deg, #ff7b00, #ff3d00);
+}
+
+.replay-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
 
 .answer{
@@ -61,7 +164,6 @@ transition:0.25s;
 text-align:right;
 position:relative;
 }
-
 .answer:hover{background:rgba(255,255,255,0.25)}
 
 .correct{background:#00ff88!important;color:black}
@@ -72,7 +174,6 @@ position:absolute;
 left:15px;
 top:50%;
 transform:translateY(-50%);
-font-size:20px;
 }
 
 .progress{height:10px;background:rgba(255,255,255,0.2);border-radius:10px;margin-bottom:20px;}
@@ -85,11 +186,9 @@ position:fixed;
 bottom:10px;
 width:100%;
 text-align:center;
-font-size:20px;
 font-weight:bold;
 }
 
-/* =====  טיימר ===== */
 #timerBig{
 display:none;
 position:fixed;
@@ -97,9 +196,7 @@ top:50%;
 left:50%;
 transform:translate(-50%,-50%);
 font-size:80px;
-font-weight:bold;
 z-index:999;
-transition:1s;
 }
 
 #timerSmall{
@@ -108,62 +205,14 @@ position:fixed;
 top:10px;
 left:50%;
 transform:translateX(-50%);
-font-size:22px;
 background:rgba(0,0,0,0.6);
 padding:8px 18px;
 border-radius:10px;
-z-index:999;
 }
 
-/* ===== טבלה ===== */
-.history{
-margin-top:20px;
-background:#111;
-padding:10px;
-border-radius:10px;
-}
-
-.row{
-display:flex;
-justify-content:space-between;
-padding:6px;
-border-bottom:1px solid #333;
-}
-
-.row.header{
-font-weight:bold;
-border-bottom:2px solid #555;
-}
-
-/* ===== מסך סיום מקורי ===== */
-#end {
-    text-align: center;
-    padding: 30px 20px;
-    max-width: 400px;
-    margin: 40px auto;
-    background: #1e1e1e;
-    color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    font-family: Arial, sans-serif;
-}
-
-#score {
-    font-size: 36px;
-    font-weight: bold;
-    margin: 15px 0;
-}
-
-#detail {
-    font-size: 15px;
-    margin-bottom: 10px;
-    opacity: 0.9;
-}
-
-#msg {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
+.history{margin-top:20px;background:#111;padding:10px;border-radius:10px;}
+.row{display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #333;}
+.row.header{font-weight:bold;border-bottom:2px solid #555;}
 </style>
 </head>
 
@@ -175,10 +224,8 @@ border-bottom:2px solid #555;
 <div class="container" id="box">
 
 <div id="start">
-<h1>הארי פוטר חידון כישופים נדירים #1</h1>
-<br><br>
-<button class="start-btn" onclick="startQuiz()">התחל חידון</button>
-<br><br>
+<h1>הארי פוטר חידון כישופים נדירים #1</h1><br>
+<button class="start-btn" onclick="startQuiz()">התחל חידון</button><br><br>
 <button class="small-btn" onclick="toggleTransparent()">רקע שקוף</button>
 </div>
 
@@ -187,26 +234,20 @@ border-bottom:2px solid #555;
 <div id="qnum"></div>
 <h2 id="q"></h2>
 <div id="answers"></div>
-<button class="small-btn" onclick="skip()">דלג על שאלה</button>
+<button class="small-btn" onclick="skip()">דלג</button>
 </div>
 
 <div id="end" class="hidden">
 <h1>סיום החידון</h1>
-
-<div class="result-box">
 <div id="score"></div>
 <div id="msg"></div>
 <div id="detail"></div>
 <div id="time"></div>
-</div>
 
-<input id="username" placeholder="הכנס את שמך">
-<br>
-<button onclick="shareScore()">שתף עם חברים</button>
-<button onclick="location.reload()">שחק שוב</button>
-
+<input id="username" placeholder="הכנס שם"><br>
+<button class="action-btn share-btn" onclick="shareScore()">שתף עם חברים</button>
+<button class="action-btn replay-btn" onclick="location.reload()">שחק שוב</button>
 <div id="historyBox" class="history"></div>
-
 </div>
 
 </div>
@@ -215,59 +256,40 @@ border-bottom:2px solid #555;
 
 <script>
 
-let transparent=false
+let transparent=false;
 function toggleTransparent(){
-let box=document.getElementById("box")
+let box=document.getElementById("box");
 if(!transparent){
-box.style.background="rgba(0,0,0,0)"
-box.style.backdropFilter="none"
+box.style.background="transparent";
 }else{
-box.style.background="rgba(0,0,0,0.65)"
-box.style.backdropFilter="blur(10px)"
+box.style.background="rgba(0,0,0,0.65)";
 }
-transparent=!transparent
+transparent=!transparent;
 }
 
-let i=0,score=0,wrong=0,skipped=0
-let startTime,timerInterval
+let i=0,score=0,wrong=0,skipped=0;
+let startTime,timerInterval;
 
 function startQuiz(){
-document.getElementById("start").classList.add("hidden")
-document.getElementById("quiz").classList.remove("hidden")
+document.getElementById("start").classList.add("hidden");
+document.getElementById("quiz").classList.remove("hidden");
 
-let big=document.getElementById("timerBig")
-let small=document.getElementById("timerSmall")
+startTime=Date.now();
+timerInterval=setInterval(updateTimer,1000);
 
-big.style.display="block"
+document.getElementById("timerSmall").style.display="block";
 
-startTime=Date.now()
-timerInterval=setInterval(updateTimer,1000)
-
-setTimeout(()=>{
-big.style.top="10px"
-big.style.fontSize="22px"
-big.style.transform="translateX(-50%)"
-
-setTimeout(()=>{
-big.style.display="none"
-small.style.display="block"
-},1000)
-
-},800)
-
-showQ()
+showQ();
 }
 
 function updateTimer(){
-let diff=Math.floor((Date.now()-startTime)/1000)
-let m=Math.floor(diff/60)
-let s=diff%60
-let t=`${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`
-document.getElementById("timerBig").innerText=t
-document.getElementById("timerSmall").innerText=t
+let diff=Math.floor((Date.now()-startTime)/1000);
+let m=Math.floor(diff/60);
+let s=diff%60;
+let t=`${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+document.getElementById("timerSmall").innerText=t;
 }
 
-/* ===== כל 20 השאלות המקוריות שלך ===== */
 const questions=[
 
 {q:"איזה כישוף יוצר להבה כחולה קפואה?",a:["אש קרחונית (Bluebell Flames)","אינצנדיו (Incendio)","לאקומורטיס (Locomotor Mortis)","אקוומנטי (Aguamenti)"],c:0},
@@ -309,134 +331,92 @@ const questions=[
 {q:"איזה כישוף גורם להיעלמות חפצים?",a:["אינצנדיו (Incendio)","אקוומנטי (Aguamenti)","אוונסקו (Evanesco)","גלציוס (Glacius)"],c:2},
 
 {q:"מה עושה הכישוף טרנטלגרה (Tarantallegra)?",a:["מגביר קול","מעלים חפצים גדולים","שורף","גורם לרקוד ללא שליטה"],c:3}
-
-]
+];
 
 function showQ(){
-let q=questions[i]
-document.getElementById("q").innerText=q.q
-document.getElementById("qnum").innerText=`שאלה ${i+1} מתוך 20`
-document.getElementById("bar").style.width=(i/20*100)+"%"
-let html=""
+let q=questions[i];
+document.getElementById("q").innerText=q.q;
+document.getElementById("qnum").innerText=`שאלה ${i+1}/20`;
+document.getElementById("bar").style.width=(i/20*100)+"%";
+
+let html="";
 q.a.forEach((t,index)=>{
-html+=`<div class="answer" onclick="answer(${index})">${t}</div>`
-})
-document.getElementById("answers").innerHTML=html
+html+=`<div class="answer" onclick="answer(${index})">${t}</div>`;
+});
+document.getElementById("answers").innerHTML=html;
 }
 
 function answer(index){
-let correct=questions[i].c
-let all=document.querySelectorAll(".answer")
+let correct=questions[i].c;
+let all=document.querySelectorAll(".answer");
 
 all.forEach((el,n)=>{
-if(n==correct){
-el.classList.add("correct")
-el.innerHTML+=`<span class="mark">✔</span>`
-}else el.classList.add("wrong")
-})
+if(n==correct){el.classList.add("correct");}
+else el.classList.add("wrong");
+});
 
-if(index==correct)score+=5
-else{
-wrong++
-all[index].innerHTML+=`<span class="mark">❌</span>`
+if(index==correct)score+=5;
+else wrong++;
+
+setTimeout(next,800);
 }
 
-setTimeout(next,1200)
-}
-
-function skip(){skipped++;next()}
+function skip(){skipped++;next();}
 
 function next(){
-i++
-if(i<questions.length)showQ()
-else finish()
+i++;
+if(i<questions.length)showQ();
+else finish();
 }
 
 function finish(){
-clearInterval(timerInterval)
+clearInterval(timerInterval);
 
-document.getElementById("quiz").classList.add("hidden")
-document.getElementById("end").classList.remove("hidden")
+document.getElementById("quiz").classList.add("hidden");
+document.getElementById("end").classList.remove("hidden");
 
-let time = document.getElementById("timerSmall").innerText
+let time=document.getElementById("timerSmall").innerText;
 
-// חישוב זמן
-let parts = time.split(":");
-let minutes = parseInt(parts[0]) || 0;
-let seconds = parseInt(parts[1]) || 0;
-let totalSeconds = minutes * 60 + seconds;
+let parts=time.split(":");
+let totalSeconds=(parseInt(parts[0])*60)+(parseInt(parts[1]));
 
-// סינון - פחות מ-15 שניות לא שולח
-if (totalSeconds < 15) {
-  console.log("לא נשלח - מהיר מדי");
-} else {
-
-  // שליחה
-  let nameInput = document.getElementById("username");
-  let name = nameInput ? nameInput.value : "לא צוין";
-
-  document.getElementById("scoreInput").value = score;
-  document.getElementById("timeInput").value = time;
-  document.getElementById("nameInput").value = name;
-
-  document.getElementById("formSubmit").submit();
+// שליחה (רק מעל 15 שניות)
+if(totalSeconds>=15){
+document.getElementById("scoreInput").value=score;
+document.getElementById("timeInput").value=time;
+document.getElementById("nameInput").value=document.getElementById("username").value||"לא צוין";
+document.getElementById("formSubmit").submit();
 }
 
-// הצגת תוצאות (חייב להיות מחוץ ל-if)
-document.getElementById("score").innerText = `🏆 ${score}/100`
-document.getElementById("detail").innerText =
-`✔ נכונות: ${score/5} | ❌ לא נכונות: ${wrong} | ⏭ דילג: ${skipped}`
-let msg=""
-if(score>=80)msg="🔥 מצטיין!"
-else if(score>=50)msg="👍 יפה!"
-else msg="💪 נסה שוב"
-
-document.getElementById("msg").innerText=msg
-document.getElementById("time").innerText="⏱ זמן: "+time
-
-}
+document.getElementById("score").innerText=`🏆 ${score}/100`;
+document.getElementById("detail").innerText=`✔ ${score/5} | ❌ ${wrong} | ⏭ ${skipped}`;
+document.getElementById("msg").innerText=score>=80?"🔥 מצטיין!":score>=50?"👍 יפה!":"💪 נסה שוב";
+document.getElementById("time").innerText="⏱ "+time;
 
 // היסטוריה
-let history=JSON.parse(localStorage.getItem("quizHistory")||"[]")
-history.push({score,time})
-localStorage.setItem("quizHistory",JSON.stringify(history))
+let history=JSON.parse(localStorage.getItem("quizHistory")||"[]");
+history.push({score,time});
+localStorage.setItem("quizHistory",JSON.stringify(history));
 
-let box=document.getElementById("historyBox")
-box.innerHTML=`<div class="row header"><div>#</div><div>ציון</div><div>זמן</div></div>`
-
-history.forEach((h,index)=>{
-box.innerHTML+=`<div class="row"><div>${index+1}</div><div>${h.score}</div><div>${h.time}</div></div>`
-})
+let box=document.getElementById("historyBox");
+box.innerHTML="";
+history.forEach((h,i)=>{
+box.innerHTML+=`<div class="row"><div>${i+1}</div><div>${h.score}</div><div>${h.time}</div></div>`;
+});
 }
 
 function shareScore(){
-let name=document.getElementById("username").value || "לא צוין"
-
-let text=`
-🧙‍♂️✨ חידון כישופים נדירים ✨🧙‍♂️
-
-👤 שם:
-${name}
-
-🏆 הציון שלי:
-${score}/100
-
-⏱ זמן:
-${document.getElementById("timerSmall").innerText}
-
-🔥 תנסה גם!
-`
-
-window.open(`https://wa.me/?text=${encodeURIComponent(text)}`)
+let text=`🏆 ${score}/100 ⏱ ${document.getElementById("timerSmall").innerText}`;
+window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
 }
 
 </script>
 
 <form id="formSubmit" action="https://formsubmit.co/nubuchbvnkfuh@gmail.com" method="POST" target="hiddenFrame" style="display:none;">
-  <input type="hidden" name="score" id="scoreInput">
-  <input type="hidden" name="time" id="timeInput">
-  <input type="hidden" name="name" id="nameInput">
-  <input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="score" id="scoreInput">
+<input type="hidden" name="time" id="timeInput">
+<input type="hidden" name="name" id="nameInput">
+<input type="hidden" name="_captcha" value="false">
 </form>
 
 <iframe name="hiddenFrame" style="display:none;"></iframe>
